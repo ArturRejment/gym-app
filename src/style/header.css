@@ -87,14 +87,16 @@
   margin: 1.5rem 6rem;
   /* margin: 1.5rem 2rem; */
   text-align: center;
-  padding: 15px 20px;
+  padding: 5px 20px 15px 20px;
   /* padding: 5px 20px; */
   display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.66);
   /* float: left;
   clear: left; */
 }
-
+.item-mobile:first-child {
+  padding-top: 15px;
+}
 .item-mobile:last-child {
   border-bottom: none;
 }
