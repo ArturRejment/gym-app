@@ -7,7 +7,7 @@ import useWindowSize from "../hooks/useWindowSize";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
 
   let menu;
   let hamburger;
