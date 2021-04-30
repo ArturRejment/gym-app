@@ -35,7 +35,7 @@ form:after {
   right: -5px;
   bottom: -5px;
   z-index: 1;
-  background-image: linear-gradient(to bottom right, #4f9acf, #fe4880);
+  background-image: linear-gradient(to bottom right, #4f9acf, #054b7e);
 }
 
 form .form-inner {
@@ -90,12 +90,7 @@ form .form-inner input[type="submit"],
   display: inline-block;
   padding: 10px 15px;
   border-radius: 45px;
-  background-image: linear-gradient(
-    to right,
-    #4f9acf 50%,
-    #4f9acf 50%,
-    #fe4880
-  );
+  background-image: linear-gradient(to right, #4f9acf 50%, #4f9acf 50%, black);
   background-size: 200%;
   background-position: 0%;
   transition: 0.4s;
@@ -126,4 +121,26 @@ form .form-inner input[type="submit"]:hover,
 .welcome h2 span {
   color: #fe4800;
   font-weight: 700;
+}
+
+.back-button {
+  color: white;
+  position: absolute;
+  top: 40px;
+  left: 10%;
+  color: #666;
+  font-size: 28px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  /* border-radius: 45px;
+  border: 1px solid #666; */
+}
+
+@media only screen and (min-width: 768px) {
+  .back-button:hover {
+    /* background-color: #4f9acf; */
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    color: white;
+  }
 }

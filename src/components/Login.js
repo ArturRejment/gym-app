@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
+import Link from "./Link";
 import "../style/login.css";
 
 export default function Login() {
@@ -31,6 +32,7 @@ export default function Login() {
 
   return (
     <div className="login">
+      <Link href="/" className="back-button">{`< back`}</Link>
       {user.email !== "" ? (
         <div className="welcome">
           <h2>
