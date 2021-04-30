@@ -12,11 +12,15 @@ export default function useWindowSize() {
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   useEffect(() => {
+    let isMounted = true;
     function handleResize() {
-      setWindowSize(getWindowSize());
+      if (isMounted) setWindowSize(getWindowSize());
     }
 
     window.addEventListener("resize", handleResize);
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return windowSize;

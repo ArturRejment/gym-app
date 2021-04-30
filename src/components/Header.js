@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "../style/header.css";
 import useWindowSize from "../hooks/useWindowSize";
+import { CSSTransition } from "react-transition-group";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -15,7 +16,6 @@ const Header = () => {
   let mobileMenuMask;
 
   if (width >= 768) {
-    // setShowMobileMenu(false);
     menu = (
       <div className="nav-menu">
         <Link href="/trainer" className="item">
@@ -39,20 +39,30 @@ const Header = () => {
       </div>
     );
 
+    mobileMenu = (
+      <div className="menu">
+        <CSSTransition
+          in={showMobileMenu}
+          unmountOnExit
+          timeout={500}
+          classNames="mobile-menu"
+        >
+          <div className="nav-mobile-menu">
+            <Link href="/trainer" className="item-mobile">
+              Trainer
+            </Link>
+            <Link href="/employee" className="item-mobile">
+              Employee
+            </Link>
+            <Link href="/client" className="item-mobile">
+              Client
+            </Link>
+          </div>
+        </CSSTransition>
+      </div>
+    );
+
     if (showMobileMenu) {
-      mobileMenu = (
-        <div className="nav-mobile-menu">
-          <Link href="/trainer" className="item-mobile">
-            Trainer
-          </Link>
-          <Link href="/employee" className="item-mobile">
-            Employee
-          </Link>
-          <Link href="/client" className="item-mobile">
-            Client
-          </Link>
-        </div>
-      );
       mobileMenuMask = (
         <div
           className="mobile-menu-mask"
