@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'myapp/client_style.css' %}"
+      type="text/css"
+    />
+    <title>Client Page</title>
+</head>
+<body>
+    <h1 class="greeting"> Hello, {{client.first_name}}!</h1>
+
+    <article class="artic">
+        <div class="shop">
+                <img src="{% static 'myapp/images/pic1.jpg' %}" />
+
+            <div class="shop__section">
+                <h1> Wanna buy some drugs?</h1>    
+                {% for shopItem in shopItems %}
+                
+                    {% if shopItem.shop.shop_id == 1 %}
+                        <div class="shop__product">
+                            <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.price}}zł</div>  <div>Buy</div> <br>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+    </article>
+
+    <div class="sizedBox"></div>
+    
+    <article class="art">
+    <div class="trainers">
+        <h3>Available trainers</h3>
+        
+        <div class="trainers__name">
+        {% for trainer in trainers %} 
+           <p> {{trainer.first_name}} {{trainer.last_name}} </p>
+        </div>
+        
+        <div class="trainers__form">
+            <form method="post">
+            {% csrf_token %}
+            
+            <ul>
+            {% for hour in trainerHours %}
+                {% if trainer.trainer_id == hour.trainer.trainer_id %}
+                    {% if hour.is_active == 1 %}
+                        {% if hour.is_taken == 0 %}
+                            <li> 
+                                <input type="checkbox", class="check", value="clicked" name="c{{hour.shift_id}}">
+                                {{hour.working.start_time}} - {{hour.working.finish_time}} 
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    
+                {% endif %}
+            
+            {% endfor %}
+            </ul>
+            {% endfor %}
+            
+                    <button type="submit", name="save", value="save"> Confirm </button>
+            </form>
+        </div>
+        <div class="end"></div>
+    </div>
+
+    <div class="group_train">
+        <h3>Group trainings</h3>
+        
+            {% for groupTraining in groupTrainings %}
+                <div class="section">
+                    <h2>{{groupTraining.group_training_name}}</h2> 
+                    <p>
+                    <input type="checkbox", class="check", value="group_clicked" name="c{{groupTraining.group_training_id}}">
+                    {{groupTraining.working.start_time}} - {{groupTraining.working.finish_time}} </p>
+                </div>
+            {% endfor %}
+            <button type="submit", name="saveGroup", value="saveGroup"> Confirm </button>
+        
+    </div>
+
+    </article>
+</body>
+</html>
