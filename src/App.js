@@ -1,11 +1,7 @@
 import React from "react";
 import Route from "./components/Route";
 import Homepage from "./components/Homepage";
-import Trainer from "./components/Trainer";
-import Employee from "./components/Employee";
-import Client from "./components/Client";
 import Login from "./components/Login";
-// import "./style/style.css";
 
 const App = () => {
   return (
