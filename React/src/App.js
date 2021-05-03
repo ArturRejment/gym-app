@@ -1,25 +1,23 @@
-import React from "react";
-import Route from "./components/Route";
-import Homepage from "./components/Homepage";
-import Login from "./components/Login";
+import React from 'react';
+import Homepage from './components/Homepage';
+import Login from './components/Login';
+import UserPage from './components/UserPage';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = () => {
-  return (
-    <div>
-      <Route path="/">
-        <Homepage />
-      </Route>
-      <Route path="/trainer">
-        <Login />
-      </Route>
-      <Route path="/employee">
-        <Login />
-      </Route>
-      <Route path="/client">
-        <Login />
-      </Route>
-    </div>
-  );
+	return (
+		<div>
+			<BrowserRouter>
+				<div>
+					<Route path="/" exact component={Homepage} />
+					<Route path="/trainer" exact component={Login} />
+					<Route path="/employee" exact component={Login} />
+					<Route path="/client" exact component={Login} />
+					<Route path="/user" exact component={UserPage} />
+				</div>
+			</BrowserRouter>
+		</div>
+	);
 };
 
 export default App;
