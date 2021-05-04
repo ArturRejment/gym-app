@@ -19,8 +19,6 @@ cx_Oracle.init_oracle_client(lib_dir=r"C:\Program Files\instantclient_19_10")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-import cx_Oracle
-cx_Oracle.init_oracle_client(lib_dir=r"D:\Oracle11g\instantclient_19_10")
 
 CORS_ORIGIN_ALLOW_ALL = True
 

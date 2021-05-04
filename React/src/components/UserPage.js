@@ -1,38 +1,39 @@
 import React from 'react';
 import useResults from '../hooks/useResults';
+import '../style/user.css';
 
 function UserPage() {
-	const products = useResults('Products');
-	const members = useResults('GymMember');
-	const trainers = useResults('Trainer');
+	const addresses = useResults('Address');
+	const trainer1hours = useResults('Trainer1');
+	const trainer2hours = useResults('Trainer2');
 
-	const renderedProducts = products.map((product) => {
-		return <div key={product.product_id}>{product.product_name}</div>;
+	const renderedAddresses = addresses.map((address) => {
+		return <div key={address.address_id}>{address.city}</div>;
 	});
 
-	const renderedMembers = members.map((member) => {
+	const renderedTrainer1Hours = trainer1hours.map((record) => {
 		return (
-			<div key={member.member_id}>
-				{member.first_name} {member.last_name}
+			<div key={record.working_start}>
+				{record.working_start} {record.working_finish}
 			</div>
 		);
 	});
 
-	const renderedTrainers = trainers.map((trainer) => {
+	const renderedTrainer2Hours = trainer2hours.map((record) => {
 		return (
-			<div key={trainer.trainer_id}>
-				{trainer.first_name} {trainer.last_name}
+			<div key={record.working_start}>
+				{record.working_start} {record.working_finish}
 			</div>
 		);
 	});
 
 	return (
 		<div>
-			<div>{renderedProducts}</div>
+			<div className="list">{renderedAddresses}</div>
 			<br />
-			<div>{renderedMembers}</div>
+			<div className="list">{renderedTrainer1Hours}</div>
 			<br />
-			<div>{renderedTrainers}</div>
+			<div className="list">{renderedTrainer2Hours}</div>
 		</div>
 	);
 }
