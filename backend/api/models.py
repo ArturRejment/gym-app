@@ -4,18 +4,18 @@ from django.db import models
 
 
 class Address(models.Model):
-    address_id = models.FloatField(primary_key=True)
-    postcode = models.CharField(max_length=20, blank=True, null=True)
-    city = models.CharField(max_length=20, blank=True, null=True)
-    street = models.CharField(max_length=20, blank=True, null=True)
+    address_id = models.IntegerField(primary_key=True)
+    postcode = models.CharField(max_length=20, blank=True, null=False)
+    city = models.CharField(max_length=20, blank=True, null=False)
+    street = models.CharField(max_length=20, blank=True, null=False)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'address'
 
 
 class GroupTraining(models.Model):
-    group_training_id = models.FloatField(primary_key=True)
+    group_training_id = models.IntegerField(primary_key=True)
     group_training_name = models.CharField(
         max_length=30, blank=True, null=True)
     trainer = models.ForeignKey('Trainer', models.DO_NOTHING)
@@ -27,7 +27,7 @@ class GroupTraining(models.Model):
 
 
 class GroupTrainingSchedule(models.Model):
-    group_training_schedule_id = models.FloatField(primary_key=True)
+    group_training_schedule_id = models.IntegerField(primary_key=True)
     group_training = models.ForeignKey(GroupTraining, models.DO_NOTHING)
     gym_member = models.ForeignKey('GymMember', models.DO_NOTHING)
 
@@ -37,7 +37,7 @@ class GroupTrainingSchedule(models.Model):
 
 
 class GymMember(models.Model):
-    member_id = models.FloatField(primary_key=True)
+    member_id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address = models.ForeignKey(
@@ -51,7 +51,7 @@ class GymMember(models.Model):
 
 
 class Membership(models.Model):
-    membership_id = models.FloatField(primary_key=True)
+    membership_id = models.IntegerField(primary_key=True)
     purchase_date = models.DateField()
     expiry_date = models.DateField()
     member = models.ForeignKey(GymMember, models.DO_NOTHING)
@@ -63,7 +63,7 @@ class Membership(models.Model):
 
 
 class Products(models.Model):
-    product_id = models.FloatField(primary_key=True)
+    product_id = models.IntegerField(primary_key=True, auto_created=True)
     price = models.FloatField()
     product_name = models.CharField(max_length=20)
 
@@ -73,7 +73,7 @@ class Products(models.Model):
 
 
 class Shop(models.Model):
-    shop_id = models.FloatField(primary_key=True)
+    shop_id = models.IntegerField(primary_key=True)
     shop_name = models.CharField(max_length=20)
     address = models.ForeignKey(
         Address, models.DO_NOTHING, blank=True, null=True)
@@ -84,7 +84,7 @@ class Shop(models.Model):
 
 
 class ShopProducts(models.Model):
-    listing_id = models.FloatField(primary_key=True)
+    listing_id = models.IntegerField(primary_key=True)
     shop = models.ForeignKey(Shop, models.DO_NOTHING)
     product = models.ForeignKey(Products, models.DO_NOTHING)
 
@@ -94,7 +94,7 @@ class ShopProducts(models.Model):
 
 
 class Trainer(models.Model):
-    trainer_id = models.FloatField(primary_key=True)
+    trainer_id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address = models.ForeignKey(
@@ -108,7 +108,7 @@ class Trainer(models.Model):
 
 
 class TrainerHours(models.Model):
-    shift_id = models.FloatField(primary_key=True)
+    shift_id = models.IntegerField(primary_key=True)
     trainer = models.ForeignKey(
         Trainer, models.DO_NOTHING, blank=True, null=True)
     working = models.ForeignKey(
@@ -120,12 +120,12 @@ class TrainerHours(models.Model):
 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'trainer_hours'
 
 
 class WorkingHours(models.Model):
-    working_id = models.FloatField(primary_key=True)
+    working_id = models.IntegerField(primary_key=True)
     start_time = models.CharField(max_length=5, blank=True, null=True)
     finish_time = models.CharField(max_length=5, blank=True, null=True)
 

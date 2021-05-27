@@ -15,7 +15,7 @@ import cx_Oracle
 #! -----------------------------------------
 #! DODAJ TO BO INACZEJ MIGRATE NIE ZADZIALA
 #! -----------------------------------------
-cx_Oracle.init_oracle_client(lib_dir=r"C:\Program Files\instantclient_19_10")
+cx_Oracle.init_oracle_client(lib_dir=r"D:\Oracle11g\instantclient_19_10")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'ORCL',
-        'USER': 'c##kamil',
+        'NAME': 'xe',
+        'USER': 'c##artur',
         'PASSWORD': 'password2',
         'HOST': 'localhost',
         'PORT' : '1521',
