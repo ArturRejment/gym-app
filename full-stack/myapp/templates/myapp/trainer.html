@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'myapp/trainer_style.css' %}"
+      type="text/css"
+    />
+    <title>Trainer Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hello, {{trainerData.first_name}}</h1>
+
+      <div class="schedule">
+        <h2>Here is your shedule for tomorrow</h2>
+        <form method="post">
+          {% csrf_token %} {% for hour in trainerHours %}
+          <div class="schedule__list">
+            {% if trainer.trainer_id == hour.trainer_id%}
+            <div style="width: 12vw">
+              {{hour.working.start_time}} - {{hour.working.finish_time}}
+            </div>
+            <div style="width: 12vw">
+              {% if hour.is_active == 1 %} Active {% else %} Nonactive {%endif%}
+            </div>
+            <div style="width: 12vw">
+              {% if hour.member_id != null%} Is Taken {% else %} Is Free {% endif %}
+            </div>
+            <input
+              type="checkbox"
+              ,
+              value="clicked"
+              ,
+              name="c{{hour.shift_id}}"
+            />
+            {% endif %}
+          </div>
+          {% endfor %}
+
+          <button type="submit" , value="availability" , name="availability">
+            Save availability
+          </button>
+          <button type="submit" , value="taken" , name="taken">
+            Save is taken
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
