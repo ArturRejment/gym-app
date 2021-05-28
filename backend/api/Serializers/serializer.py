@@ -18,13 +18,12 @@ class AddressCreateSerializer(serializers.ModelSerializer):
 class TrainerHoursSerializer(serializers.ModelSerializer):
     working_start = serializers.CharField(source='working.start_time', read_only=True)
     working_finish = serializers.CharField(source='working.finish_time', read_only=True)
-    member_name = serializers.CharField(source='member.first_name', allow_null=True, read_only=True)
     member_id = serializers.FloatField(source='member.member_id', allow_null=True)
     shift_id = serializers.ReadOnlyField()
     
     class Meta:
         model = TrainerHours
-        fields = ('shift_id', 'working_start', 'working_finish', 'is_active', 'is_taken', 'member_name', 'member_id')
+        fields = ('shift_id', 'working_start', 'working_finish', 'is_active',  'member_id')
        
     def update(self, instance, validated_data):
         instance.is_active = validated_data.get('is_active', instance.is_active)
@@ -49,7 +48,7 @@ class TrainerAvailableHoursSerializer(serializers.ModelSerializer):
 
 class ShopProductsSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.product_name')
-    price = serializers.FloatField(source='product.price')
+    price = serializers.FloatField(source='product.product_price')
 
     class Meta:
         model = ShopProducts

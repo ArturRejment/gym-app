@@ -14,9 +14,9 @@ def apiOverview(request):
         'Create new address' : '/create-address',
         'Delete address' : '/delete-address/<int:ident>',
         'Get info about trainer' : '/trainer/<int:ident>',
-        'Get available hours for trainer' : 'available-hours-trainer/<int:ident>',
-        'Update particular working hour' : 'update-hour/<int:ident>',
-        'Get all products in particular shop' : 'shop-products/<int:ident>'
+        'Get available hours for trainer' : '/available-hours-trainer/<int:ident>',
+        'Update particular working hour' : '/update-hour/<int:ident>',
+        'Get all products in particular shop' : '/shop-products/<int:ident>'
     }
     return Response(api_urls)
 
@@ -80,7 +80,7 @@ def getTrainer(request, ident, *args, **kwargs):
     
 @api_view(['GET'])
 def getActiveHoursForTrainer(request, ident, *args, **kwargs):
-    qs = TrainerHours.objects.filter(trainer=ident, is_active=True, is_taken=False)
+    qs = TrainerHours.objects.filter(trainer=ident, is_active=True, member=None)
     serializer = TrainerAvailableHoursSerializer(qs, many=True)
     return Response(serializer.data)
 
