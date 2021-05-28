@@ -22,6 +22,7 @@ Login page:
 ![login.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/login.png?raw=true)
 
 Client page:
+
 ![client.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/client.png?raw=true)
 
 ---
