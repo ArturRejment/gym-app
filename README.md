@@ -5,6 +5,7 @@ An application for gym managment.
 ## Database
 Database for the application was created and implemented with Oracle Database.
 Entity Relationship Diagram for the database:
+![Database ER diagram (crow's foot).png](https://github.com/ArturRejment/gym-app/blob/main/Database/Database%20ER%20diagram%20(crow's%20foot).png?raw=true)
 
 
 ---
@@ -15,13 +16,13 @@ React application uses Redux to fetch the data from the API endpoints.
 Application in Django is a full-stack application which handles both frontend and backend.
 
 Landing page of the website:
+![landing.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/landing.png?raw=true)
 
-
-Loging page:
-
+Login page:
+![login.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/login.png?raw=true)
 
 Client page:
-
+![client.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/client.png?raw=true)
 
 ---
 ## Backend
@@ -52,3 +53,4 @@ Valid sufixes for DELETE Method:
 - `/delete-address/<int:ident>` deletes particular address
 
 Exemplary GET Request sent from Postman returns list of products available in shop with id = 1:
+![postman.png](https://github.com/ArturRejment/gym-app/blob/main/Pics/postman.png?raw=true)
