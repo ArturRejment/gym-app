@@ -1,4 +1,4 @@
-### Gym Management Application
+## Gym Management Application
 An application for gym managment.
 
 ---
