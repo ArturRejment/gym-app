@@ -30,18 +30,12 @@
               {{hour.working.start_time}} - {{hour.working.finish_time}}
             </div>
             <div style="width: 12vw">
-              {% if hour.is_active == 1 %} Active {% else %} Nonactive {%endif%}
+              {% if hour.is_active == 1 %} Active {% else %} Inactive {%endif%}
             </div>
             <div style="width: 12vw">
-              {% if hour.member_id != null%} Is Taken {% else %} Is Free {% endif %}
+              {% if hour.member_id != null%} Is Taken by {{hour.member.personal_data.first_name}} {% else %} Is Free {% endif %}
             </div>
-            <input
-              type="checkbox"
-              ,
-              value="clicked"
-              ,
-              name="c{{hour.shift_id}}"
-            />
+            <input type="checkbox", class = "check", value="clicked" name="c{{hour.shift_id}}"/>
             {% endif %}
           </div>
           {% endfor %}

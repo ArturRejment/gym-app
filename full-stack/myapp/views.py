@@ -28,9 +28,8 @@ def trainer(response, id):
         if response.POST.get("taken"):
             for hour in trainerHours:
                 if response.POST.get("c"+str(hour.shift_id)) == "clicked":
-                    if hour.is_taken == 1:
+                    if hour.member != None:
                         hour.member = None
-                        hour.is_taken = 0
                     hour.save()
 
     return render(response, "myapp/trainer.html", {"trainerHours": trainerHours, "trainer": trainer, "trainerData": personalData, "member":member})
@@ -42,14 +41,13 @@ def client(response, id):
     client = GymMember.objects.get(member_id=id)
     groupTrainingSchedule = GroupTrainingSchedule.objects.all()
     groupTrainings = GroupTraining.objects.all()
-    shopItems = ShopProducts.objects.all()
+    shopItems = ShopProducts.objects.filter(shop_id = 1)
 
     if response.method == "POST":
         if response.POST.get("save"):
             for hour in trainerHours:
                 if response.POST.get("c"+str(hour.shift_id)) == "clicked":
                     hour.member = client
-                    hour.is_taken = 1
                 hour.save()
 
     my_dic = {"client": client,
