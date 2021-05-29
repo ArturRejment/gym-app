@@ -36,7 +36,7 @@ To run the server use command `python manage.py runserver` in the 'backend' dire
 
 Default hostname and port: http://127.0.0.1:8000/api
 
-Valid sufixes fot GET Method:
+Valid sufixes for GET Method:
 
 - `/address` returns the list of all addresses
 - `/address-details/<int:ident>` returns details about particular address
@@ -44,7 +44,7 @@ Valid sufixes fot GET Method:
 - `/available-hours-trainer/<int:ident>` returns availabe hours for particular trainer specified by trainer_id parameter
 - `/shop-products/<int:ident>` returns list of products in particular shop specified by shop_id parameter
 
-Valid sufixes fot POST Method:
+Valid sufixes for POST Method:
 
 - `/create-address` creates new address
 - `/update-hour/<int:ident>` updates particular working hour
