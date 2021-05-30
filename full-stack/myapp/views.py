@@ -75,6 +75,7 @@ def receptionist(response, id):
     active_memberships = MemberMemberships.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
     shop = Shop.objects.get(shop_id = 1)
+    products = Products.objects.all()
     
     if response.method == "POST":
         if response.POST.get("delProd"):
@@ -83,11 +84,19 @@ def receptionist(response, id):
                 if response.POST.get("c"+str(product.listing_id)) == "clicked":
                     product.delete()
     
+        elif response.POST.get("addProd"):
+            for productA in products:
+                if response.POST.get("c"+str(productA.product_id)) == "clicked":
+                    newId = ShopProducts.objects.last().listing_id+1
+                    prod = ShopProducts.objects.create(listing_id=newId, shop=shop, product=productA)
+    
+    
     my_dic = {
         "receptionist": receptionist,
         "active": active_memberships,
         "shopItems": shopItems,
-        "shop": shop
+        "shop": shop,
+        "products": products
     }
     
     return render(response, "myapp/receptionist.html", my_dic)

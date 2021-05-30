@@ -31,21 +31,39 @@
    
         {% endfor %}
     </article> {% endcomment %}
+    <div class="container">
 
-    <article class="shopMenagement">
-        <h2> Items in shop: {{shop.shop_name}} </h2>
-        <form method="post">
-        {% csrf_token %}
-        {% for shopItem in shopItems %}
-                
+        <article class="shopMenagement">
+            <h2> Items in shop: {{shop.shop_name}} </h2>
+            <form method="post">
+            {% csrf_token %}
+            {% for shopItem in shopItems %}
                     
-            <div class="shop__product">
-                <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div>  <input type="checkbox", class = "check", value="clicked" name="c{{shopItem.listing_id}}"/> <br>
-            </div>
-                    
-        {% endfor %}
-        <button type="submit", value="delProd", name="delProd"> Delete Product </button>
-        </form>
-    </article>
+                        
+                <div class="shop__product">
+                    <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div>  <input type="checkbox", class = "check", value="clicked" name="c{{shopItem.listing_id}}"/>
+                </div>
+                        
+            {% endfor %}
+            <button type="submit", value="delProd", name="delProd"> Delete Products </button>
+            </form>
+        </article>
 
-</body
+        <div class="sizedBox"> </div>
+
+        <article class="productsList">
+            <h2> Products to add: </h2>
+            <form method="post">
+            {% csrf_token %}
+                {% for product in products %}
+                    <div class="productItem">
+                        {{product.product_name}} <input type="checkbox", class = "check", value="clicked" name="c{{product.product_id}}"/>
+                    </div>
+                {% endfor %}
+                <button type="submit", value="addProd", name="addProd"> Add Products </button>
+            </form>
+        </article>
+
+    </div>
+
+</body>
