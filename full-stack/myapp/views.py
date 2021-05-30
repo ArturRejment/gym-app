@@ -76,6 +76,13 @@ def receptionist(response, id):
     shopItems = ShopProducts.objects.filter(shop_id=1)
     shop = Shop.objects.get(shop_id = 1)
     
+    if response.method == "POST":
+        if response.POST.get("delProd"):
+            # shopItemsForDeletion = ShopProducts.objects.all()
+            for product in shopItems:
+                if response.POST.get("c"+str(product.listing_id)) == "clicked":
+                    product.delete()
+    
     my_dic = {
         "receptionist": receptionist,
         "active": active_memberships,

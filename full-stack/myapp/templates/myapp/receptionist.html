@@ -11,7 +11,7 @@
     />
     <link
       rel="stylesheet"
-      href="{% static 'myapp/client_style.css' %}"
+      href="{% static 'myapp/recep_style.css' %}"
       type="text/css"
     />
     <title>Receptionist Page</title>
@@ -19,7 +19,7 @@
 
 <body>
 
-    <h1 class="greeting"> Hello, {{receptionist.personal_data.first_name}}!</h1>
+    <h1 class="greeting"> Hello{% if receptionist.is_senior_receptionist == True%} Senior Receptionist{%else%} Junior Receptionist{% endif %}, {{receptionist.personal_data.first_name}}!</h1>
 
     {% comment %} <article class="active_memberships">
     <h1> Active memberships </h1>
@@ -33,15 +33,19 @@
     </article> {% endcomment %}
 
     <article class="shopMenagement">
-        <h2> Items in shop {{shop.shop_name}} </h2>
+        <h2> Items in shop: {{shop.shop_name}} </h2>
+        <form method="post">
+        {% csrf_token %}
         {% for shopItem in shopItems %}
                 
                     
             <div class="shop__product">
-                <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div>  <div>Buy</div> <br>
+                <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div>  <input type="checkbox", class = "check", value="clicked" name="c{{shopItem.listing_id}}"/> <br>
             </div>
                     
         {% endfor %}
+        <button type="submit", value="delProd", name="delProd"> Delete Product </button>
+        </form>
     </article>
 
 </body
