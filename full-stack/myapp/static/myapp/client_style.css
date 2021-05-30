@@ -14,7 +14,10 @@
 }
 
 .artic {
-  height: 80vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 40px;
 }
 
 .artic .shop {
@@ -60,6 +63,16 @@
   color: black;
 }
 
+.artic .shop .shop__product .buyBttn {
+  background-color: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .sizedBox {
   margin-left: auto;
   margin-right: auto;
@@ -72,13 +85,12 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-  width: 74vw;
+  width: 90vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: start;
           align-items: flex-start;
   -ms-flex-align: start;
@@ -115,13 +127,16 @@
 
 .group_train .section {
   margin-top: 50px;
-  width: 25vw;
+  width: 45vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .group_train h3 {

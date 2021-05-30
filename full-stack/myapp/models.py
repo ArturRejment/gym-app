@@ -129,6 +129,7 @@ class ShopProducts(models.Model):
     listing_id = models.FloatField(primary_key=True)
     shop = models.ForeignKey(Shop, models.DO_NOTHING)
     product = models.ForeignKey(Products, models.DO_NOTHING)
+    product_amount = models.IntegerField()
 
     class Meta:
         managed = False
