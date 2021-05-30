@@ -4,6 +4,7 @@ from .models import *
 from .forms import CreateNewTrainer, UpdateWorkingHours
 from rest_framework import generics
 from .serializers import *
+from datetime import date
 
 # Create your views here.
 
@@ -63,18 +64,23 @@ def client(response, id):
 def index(response):
     return render(response, "myapp/index.html", {})
 
-
-def add(response):
-    # if response.method == "POST":
-    #     form = CreateNewTrainer(response.POST)
-    #     if form.is_valid():
-    #         n = form.cleaned_data["firstname"]
-    #         ln = form.cleaned_data["lastname"]
-    #         i = form.cleaned_data["id"]
-
-    #         t = Trainer(firstname=n, lastname=ln, id=i)
-    #         t.save()
-
-    # else:
-    form = CreateNewTrainer()
-    return render(response, "myapp/add.html", {"form": form})
+def receptionist(response, id):
+    receptionist = Receptionist.objects.get(receptionist_id = id)
+    
+    # Active memberships
+    # Active membersips are not woring properly
+    # Problem with the dates comparison
+    today = date.today()
+    d1 = today.strftime("%m, %d ,%Y")
+    active_memberships = MemberMemberships.objects.all()
+    shopItems = ShopProducts.objects.filter(shop_id=1)
+    shop = Shop.objects.get(shop_id = 1)
+    
+    my_dic = {
+        "receptionist": receptionist,
+        "active": active_memberships,
+        "shopItems": shopItems,
+        "shop": shop
+    }
+    
+    return render(response, "myapp/receptionist.html", my_dic)

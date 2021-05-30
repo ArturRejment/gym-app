@@ -166,3 +166,4 @@ class WorkingHours(models.Model):
     class Meta:
         managed = False
         db_table = 'working_hours'
+        
