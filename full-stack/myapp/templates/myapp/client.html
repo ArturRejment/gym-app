@@ -80,16 +80,18 @@
     <div class="group_train">
         <h3>Group trainings</h3>
         
+        <form method="post">
+        {% csrf_token %}
             {% for groupTraining in groupTrainings %}
                 <div class="section">
                     <h2>{{groupTraining.group_training_name}}</h2> 
                     <p>
-                    <input type="checkbox", class="check", value="group_clicked" name="c{{groupTraining.group_training_id}}">
+                    <input type="checkbox", class="check", value="clicked", name="c{{groupTraining.group_training_id}}">
                     {{groupTraining.working.start_time}} - {{groupTraining.working.finish_time}} </p>
                 </div>
             {% endfor %}
             <button type="submit", name="saveGroup", value="saveGroup"> Confirm </button>
-        
+        </form>
     </div>
 
     </article>

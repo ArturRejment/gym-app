@@ -50,6 +50,15 @@ def client(response, id):
                 if response.POST.get("c"+str(hour.shift_id)) == "clicked":
                     hour.member = client
                 hour.save()
+        
+        elif response.POST.get("saveGroup"):
+            print("POST")
+            for training in groupTrainings:
+                print("NOW LOOP")
+                if response.POST.get("c"+str(training.group_training_id)) == "clicked":
+                    print("WOO EVEN HERE")
+                    last = GroupTrainingSchedule.objects.last().group_training_schedule_id+1
+                    train = GroupTrainingSchedule.objects.create(group_training_schedule_id=last, group_training = training, member = client)
 
     my_dic = {"client": client,
               "trainerHours": trainerHours,
@@ -70,8 +79,6 @@ def receptionist(response, id):
     # Active memberships
     # Active membersips are not woring properly
     # Problem with the dates comparison
-    today = date.today()
-    d1 = today.strftime("%m, %d ,%Y")
     active_memberships = MemberMemberships.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
     shop = Shop.objects.get(shop_id = 1)
