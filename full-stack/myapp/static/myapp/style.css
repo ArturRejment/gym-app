@@ -14,8 +14,13 @@
 
 body {
   background-image: url("images/hero.jpg");
-  -o-object-fit: cover;
+  /* -o-object-fit: cover; */
   object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 }
 
 nav {
@@ -84,15 +89,15 @@ section {
 }
 
 .hero {
-  background-image: -webkit-gradient(
+  /* background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
     from(rgba(0, 0, 0, 0.7)),
     to(rgba(0, 0, 0, 0.7))
-  );
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-  height: 100vh;
+  ); */
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)); */
+  height:fit-content;
   width: 100vw;
   position: relative;
 }
@@ -110,27 +115,24 @@ section {
   opacity: 0.8;
 }
 
-.hero img {
-  opacity: 0.8;
+
+.headline {
+  margin-top: 300px;
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero .headline {
-  font-size: 45px;
-  font-weight: bold;
-  background: none;
-  text-align: center;
+.headline p {
+  font-family: Fira Code;
   letter-spacing: 5px;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  font-size: 40px;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  color: white;
-  z-index: 3;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ffffff;
+  padding: 0 20px;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

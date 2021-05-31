@@ -4,7 +4,7 @@ from .models import *
 from .forms import CreateNewTrainer, UpdateWorkingHours
 from rest_framework import generics
 from .serializers import *
-from datetime import date
+import datetime
 
 # Create your views here.
 
@@ -52,11 +52,8 @@ def client(response, id):
                 hour.save()
         
         elif response.POST.get("saveGroup"):
-            print("POST")
             for training in groupTrainings:
-                print("NOW LOOP")
                 if response.POST.get("c"+str(training.group_training_id)) == "clicked":
-                    print("WOO EVEN HERE")
                     last = GroupTrainingSchedule.objects.last().group_training_schedule_id+1
                     train = GroupTrainingSchedule.objects.create(group_training_schedule_id=last, group_training = training, member = client)
 
@@ -79,7 +76,7 @@ def receptionist(response, id):
     # Active memberships
     # Active membersips are not woring properly
     # Problem with the dates comparison
-    active_memberships = MemberMemberships.objects.all()
+    active_memberships = MemberMemberships.objects.filter(expiry_date__gt = datetime.date.today())
     shopItems = ShopProducts.objects.filter(shop_id=1)
     shop = Shop.objects.get(shop_id = 1)
     products = Products.objects.all()

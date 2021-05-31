@@ -21,6 +21,31 @@
     }
 }
 
+.container2 {
+    font-family: "Fira Code", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 100px;
+
+    h2 {
+        font-size: 36px;
+        font-weight: normal;
+        margin-bottom: 50px;
+    }
+
+    .active_person {
+        font-weight: 14px;
+        margin-bottom: 30px;
+
+        .data {
+            width: 15vw;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
 h1 {
     font-size: 62px;
     font-weight: normal;

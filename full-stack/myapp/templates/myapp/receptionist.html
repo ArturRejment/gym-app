@@ -52,7 +52,7 @@
         <div class="sizedBox"> </div>
 
         <article class="productsList">
-            <h2> Products to add: </h2>
+            <h2> Products to add </h2>
             <form method="post">
             {% csrf_token %}
                 {% for product in products %}
@@ -64,6 +64,17 @@
             </form>
         </article>
 
+        
+    </div>
+
+    <div class="container2">
+        
+        <article class="active">
+        <h2> Active memberships </h2>
+            {% for act in active %}
+                <div class="active_person"> <div class="data">{{act.member.personal_data.first_name}} {{act.member.personal_data.last_name}} </div> {{act.membership.membership_type}} {{act.expiry_date}}</div>
+            {% endfor %}
+        </article>
     </div>
 
 </body>

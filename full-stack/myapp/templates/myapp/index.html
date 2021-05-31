@@ -11,7 +11,7 @@
     />
     <link
       rel="stylesheet"
-      href="{% static 'gym/style.css' %}"
+      href="{% static 'myapp/style.css' %}"
       type="text/css"
     />
     <title>Gym Fit</title>
@@ -39,10 +39,12 @@
     <section>
       <div class="hero">
         <div class="box"></div>
-        <img src="{% static 'gym/images/hero.jpg' %}" />
+        {% comment %} <img src="{% static 'myapp/images/hero.jpg' %}" /> {% endcomment %}
         <div class="headline">
-          This is not a sprint, <br />
-          this is a marathon
+          <p>
+            This is not a sprint, <br />
+            this is a marathon
+          </p>
         </div>
       </div>
     </section>

@@ -27,6 +27,37 @@
   background-color: gray;
 }
 
+.container2 {
+  font-family: "Fira Code", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 100px;
+}
+
+.container2 h2 {
+  font-size: 36px;
+  font-weight: normal;
+  margin-bottom: 50px;
+}
+
+.container2 .active_person {
+  font-weight: 14px;
+  margin-bottom: 30px;
+}
+
+.container2 .active_person .data {
+  width: 15vw;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 h1 {
   font-size: 62px;
   font-weight: normal;
