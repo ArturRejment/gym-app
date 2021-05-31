@@ -1,0 +1,136 @@
+.logo {
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Fira Code", sans-serif;
+}
+
+body {
+  background-image: url("images/hero.jpg");
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 10px 8%;
+  min-height: 5vh;
+  color: white;
+  z-index: 5;
+}
+
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.list a {
+  text-decoration: none;
+  color: white;
+}
+
+.list__item {
+  font-weight: bold;
+  margin-left: 80px;
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.list__item::hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.list .butt {
+  width: 130px;
+  height: 33px;
+  border-radius: 45px;
+  text-align: center;
+  background-color: #4f9acf;
+  color: white;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.hero {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 0.7)),
+    to(rgba(0, 0, 0, 0.7))
+  );
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.hero .box {
+  position: absolute;
+  z-index: 100;
+  width: 90vw;
+  height: 1px;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+  top: 0px;
+  background-color: white;
+  opacity: 0.8;
+}
+
+.hero img {
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.hero .headline {
+  font-size: 45px;
+  font-weight: bold;
+  background: none;
+  text-align: center;
+  letter-spacing: 5px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  font-size: 40px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 3;
+}
+/*# sourceMappingURL=style.css.map */
