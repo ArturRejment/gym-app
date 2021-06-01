@@ -32,12 +32,16 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100vw;
+  width: 95vw;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container2 h2 {
@@ -49,12 +53,19 @@
 .container2 .active_person {
   font-weight: 14px;
   margin-bottom: 30px;
+  margin-left: 20px;
+  width: 45vw;
 }
 
 .container2 .active_person .data {
   width: 15vw;
   font-size: 18px;
   font-weight: 500;
+}
+
+.container2 .addMembership {
+  width: 45vw;
+  text-align: center;
 }
 
 .container2 .addMembership .cont {
@@ -67,6 +78,40 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.container2 .addMembership .cont h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.container2 .addMembership .cont .members div {
+  margin-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container2 .addMembership .cont .members div input {
+  margin-left: 10px;
+}
+
+.container2 .addMembership .cont .memberships div {
+  margin-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container2 .addMembership .cont .memberships div input {
+  margin-left: 10px;
 }
 
 h1 {
