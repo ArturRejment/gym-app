@@ -24,9 +24,9 @@
 .container2 {
     font-family: "Fira Code", sans-serif;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-left: 100px;
+    width: 100vw;
 
     h2 {
         font-size: 36px;
@@ -37,11 +37,20 @@
     .active_person {
         font-weight: 14px;
         margin-bottom: 30px;
+        
 
         .data {
             width: 15vw;
             font-size: 18px;
             font-weight: 500;
+        }
+    }
+
+    .addMembership {
+        .cont {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     }
 }

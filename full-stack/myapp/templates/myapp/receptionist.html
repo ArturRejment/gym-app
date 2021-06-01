@@ -75,6 +75,32 @@
                 <div class="active_person"> <div class="data">{{act.member.personal_data.first_name}} {{act.member.personal_data.last_name}} </div> {{act.membership.membership_type}} {{act.expiry_date}}</div>
             {% endfor %}
         </article>
+
+        
+        <article class="addMembership">
+            <h2>Renew membership </h2>
+            <div class="cont">
+                <div class="members">
+                    <h3>Members</h3>
+                    {% for member in members %}
+                        <div> 
+                            {{member.personal_data.first_name}} {{member.personal_data.last_name}} 
+                            <input type="checkbox", class = "check", value="clicked" name="c{{member.member_id}}"/>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="memberships">
+                    <h3>Memberships</h3>
+                    {% for membership in memberships %}
+                        <div> 
+                            {{membership.membership_type}} {{membership.membership_price}} 
+                            <input type="checkbox", class = "check", value="clicked" name="c{{membership.membership_id}}"/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
     </div>
 
 </body>

@@ -77,6 +77,8 @@ def receptionist(response, id):
     # Active membersips are not woring properly
     # Problem with the dates comparison
     active_memberships = MemberMemberships.objects.filter(expiry_date__gt = datetime.date.today())
+    members = GymMember.objects.all()
+    memberships = Membership.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
     shop = Shop.objects.get(shop_id = 1)
     products = Products.objects.all()
@@ -100,7 +102,9 @@ def receptionist(response, id):
         "active": active_memberships,
         "shopItems": shopItems,
         "shop": shop,
-        "products": products
+        "products": products,
+        "members": members,
+        "memberships": memberships
     }
     
     return render(response, "myapp/receptionist.html", my_dic)
