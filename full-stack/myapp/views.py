@@ -94,7 +94,7 @@ def receptionist(response, id):
             for productA in products:
                 if response.POST.get("c"+str(productA.product_id)) == "clicked":
                     newId = ShopProducts.objects.last().listing_id+1
-                    prod = ShopProducts.objects.create(listing_id=newId, shop=shop, product=productA)
+                    prod = ShopProducts.objects.create(listing_id=newId, shop=shop, product=productA, product_amount=15)
                     
         elif response.POST.get("renew"):
             for membership in memberships:
