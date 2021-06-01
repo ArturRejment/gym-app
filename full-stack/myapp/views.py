@@ -95,6 +95,25 @@ def receptionist(response, id):
                 if response.POST.get("c"+str(productA.product_id)) == "clicked":
                     newId = ShopProducts.objects.last().listing_id+1
                     prod = ShopProducts.objects.create(listing_id=newId, shop=shop, product=productA)
+                    
+        elif response.POST.get("renew"):
+            for membership in memberships:
+                if response.POST.get("d"+str(membership.membership_id)) == "clicked":
+                    choosenMembership = Membership.objects.get(membership_id = membership.membership_id)
+                    
+            if choosenMembership != None:
+                for memberA in members:
+                    if response.POST.get("c"+str(memberA.member_id)) == "clicked":
+                        newId = MemberMemberships.objects.last().member_memberships_id + 1
+                        st_date = datetime.date.today()
+                        end_date = st_date + datetime.timedelta(days=+30)
+                        newMembership = MemberMemberships.objects.create(
+                            member_memberships_id = newId,
+                            membership = choosenMembership,
+                            member = memberA,
+                            purchase_date = st_date,
+                            expiry_date = end_date
+                        )
     
     
     my_dic = {
