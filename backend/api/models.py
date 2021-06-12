@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Address(models.Model):
-    address_id = models.FloatField(primary_key=True)
+    address_id = models.AutoField(primary_key=True)
     postcode = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
     street = models.CharField(max_length=20)
@@ -15,7 +15,7 @@ class Address(models.Model):
 
 
 class GroupTraining(models.Model):
-    group_training_id = models.FloatField(primary_key=True)
+    group_training_id = models.AutoField(primary_key=True)
     group_training_name = models.CharField(max_length=30)
     trainer = models.ForeignKey('Trainer', models.DO_NOTHING)
     working = models.ForeignKey('WorkingHours', models.DO_NOTHING)
@@ -26,7 +26,7 @@ class GroupTraining(models.Model):
 
 
 class GroupTrainingSchedule(models.Model):
-    group_training_schedule_id = models.FloatField(primary_key=True)
+    group_training_schedule_id = models.AutoField(primary_key=True)
     group_training = models.ForeignKey(GroupTraining, models.DO_NOTHING)
     member = models.ForeignKey('GymMember', models.DO_NOTHING)
 
@@ -36,7 +36,7 @@ class GroupTrainingSchedule(models.Model):
 
 
 class GymMember(models.Model):
-    member_id = models.FloatField(primary_key=True)
+    member_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey('PersonalData', models.DO_NOTHING)
     sign_up_date = models.DateField()
     is_suspended = models.BooleanField(blank=True, null=True)
@@ -47,7 +47,7 @@ class GymMember(models.Model):
 
 
 class MemberMemberships(models.Model):
-    member_memberships_id = models.FloatField(primary_key=True)
+    member_memberships_id = models.AutoField(primary_key=True)
     membership = models.ForeignKey('Membership', models.DO_NOTHING)
     member = models.ForeignKey(GymMember, models.DO_NOTHING)
     purchase_date = models.DateField()
@@ -58,23 +58,11 @@ class MemberMemberships(models.Model):
         db_table = 'member_memberships'
 
 
-class MembersHistoryLog(models.Model):
-    member = models.OneToOneField(
-        GymMember, models.DO_NOTHING, primary_key=True)
-    sign_up_date = models.DateField()
-    account_susp_date = models.DateField()
-    previous_account_state = models.BooleanField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'members_history_log'
-        unique_together = (('member', 'account_susp_date'),)
-
-
 class Membership(models.Model):
-    membership_id = models.FloatField(primary_key=True)
+    membership_id = models.AutoField(primary_key=True)
     membership_type = models.CharField(max_length=30)
-    membership_price = models.FloatField()
+    membership_price = models.DecimalField(
+        max_digits=65535, decimal_places=65535)
 
     class Meta:
         managed = False
@@ -82,7 +70,7 @@ class Membership(models.Model):
 
 
 class PersonalData(models.Model):
-    personal_data_id = models.FloatField(primary_key=True)
+    personal_data_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     address = models.ForeignKey(Address, models.DO_NOTHING)
@@ -95,8 +83,8 @@ class PersonalData(models.Model):
 
 
 class Products(models.Model):
-    product_id = models.FloatField(primary_key=True)
-    product_price = models.FloatField()
+    product_id = models.AutoField(primary_key=True)
+    product_price = models.DecimalField(max_digits=65535, decimal_places=65535)
     product_name = models.CharField(max_length=20)
 
     class Meta:
@@ -105,7 +93,7 @@ class Products(models.Model):
 
 
 class Receptionist(models.Model):
-    receptionist_id = models.FloatField(primary_key=True)
+    receptionist_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     is_senior_receptionist = models.BooleanField(blank=True, null=True)
 
@@ -115,7 +103,7 @@ class Receptionist(models.Model):
 
 
 class Shop(models.Model):
-    shop_id = models.FloatField(primary_key=True)
+    shop_id = models.AutoField(primary_key=True)
     shop_name = models.CharField(max_length=20)
     address = models.ForeignKey(
         Address, models.DO_NOTHING, blank=True, null=True)
@@ -126,9 +114,10 @@ class Shop(models.Model):
 
 
 class ShopProducts(models.Model):
-    listing_id = models.FloatField(primary_key=True)
+    listing_id = models.AutoField(primary_key=True)
     shop = models.ForeignKey(Shop, models.DO_NOTHING)
     product = models.ForeignKey(Products, models.DO_NOTHING)
+    product_amount = models.IntegerField()
 
     class Meta:
         managed = False
@@ -136,9 +125,9 @@ class ShopProducts(models.Model):
 
 
 class Trainer(models.Model):
-    trainer_id = models.FloatField(primary_key=True)
+    trainer_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
-    number_of_certifications = models.FloatField(blank=True, null=True)
+    number_of_certifications = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -146,7 +135,7 @@ class Trainer(models.Model):
 
 
 class TrainerHours(models.Model):
-    shift_id = models.FloatField(primary_key=True)
+    shift_id = models.AutoField(primary_key=True)
     trainer = models.ForeignKey(Trainer, models.DO_NOTHING)
     working = models.ForeignKey('WorkingHours', models.DO_NOTHING)
     member = models.ForeignKey(
@@ -159,7 +148,7 @@ class TrainerHours(models.Model):
 
 
 class WorkingHours(models.Model):
-    working_id = models.FloatField(primary_key=True)
+    working_id = models.AutoField(primary_key=True)
     start_time = models.CharField(max_length=5)
     finish_time = models.CharField(max_length=5)
 
