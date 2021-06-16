@@ -33,7 +33,7 @@ def trainer(response, id):
                         hour.member = None
                     hour.save()
 
-    return render(response, "myapp/trainer.html", {"trainerHours": trainerHours, "trainer": trainer, "trainerData": personalData, "member":member})
+    return render(response, "myapp/trainer.html", {"trainerHours": trainerHours, "trainer": trainer, "trainerData": personalData, "member": member})
 
 
 def client(response, id):
@@ -42,7 +42,7 @@ def client(response, id):
     client = GymMember.objects.get(member_id=id)
     groupTrainingSchedule = GroupTrainingSchedule.objects.all()
     groupTrainings = GroupTraining.objects.all()
-    shopItems = ShopProducts.objects.filter(shop_id = 1)
+    shopItems = ShopProducts.objects.filter(shop_id=1)
 
     if response.method == "POST":
         if response.POST.get("save"):
@@ -50,12 +50,13 @@ def client(response, id):
                 if response.POST.get("c"+str(hour.shift_id)) == "clicked":
                     hour.member = client
                 hour.save()
-        
+
         elif response.POST.get("saveGroup"):
             for training in groupTrainings:
                 if response.POST.get("c"+str(training.group_training_id)) == "clicked":
                     last = GroupTrainingSchedule.objects.last().group_training_schedule_id+1
-                    train = GroupTrainingSchedule.objects.create(group_training_schedule_id=last, group_training = training, member = client)
+                    train = GroupTrainingSchedule.objects.create(
+                        group_training_schedule_id=last, group_training=training, member=client)
 
     my_dic = {"client": client,
               "trainerHours": trainerHours,
@@ -70,37 +71,41 @@ def client(response, id):
 def index(response):
     return render(response, "myapp/index.html", {})
 
+
 def receptionist(response, id):
-    receptionist = Receptionist.objects.get(receptionist_id = id)
-    
+    receptionist = Receptionist.objects.get(receptionist_id=id)
+
     # Active memberships
     # Active membersips are not woring properly
     # Problem with the dates comparison
-    active_memberships = MemberMemberships.objects.filter(expiry_date__gt = datetime.date.today())
+    # active_memberships = MemberMemberships.objects.filter(expiry_date__gt = datetime.date.today())
+    active_memberships = MemberMemberships.objects.all()
     members = GymMember.objects.all()
     memberships = Membership.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
-    shop = Shop.objects.get(shop_id = 1)
+    shop = Shop.objects.get(shop_id=1)
     products = Products.objects.all()
-    
+
     if response.method == "POST":
         if response.POST.get("delProd"):
             # shopItemsForDeletion = ShopProducts.objects.all()
             for product in shopItems:
                 if response.POST.get("c"+str(product.listing_id)) == "clicked":
                     product.delete()
-    
+
         elif response.POST.get("addProd"):
             for productA in products:
                 if response.POST.get("c"+str(productA.product_id)) == "clicked":
                     newId = ShopProducts.objects.last().listing_id+1
-                    prod = ShopProducts.objects.create(listing_id=newId, shop=shop, product=productA, product_amount=15)
-                    
+                    prod = ShopProducts.objects.create(
+                        listing_id=newId, shop=shop, product=productA, product_amount=15)
+
         elif response.POST.get("renew"):
             for membership in memberships:
                 if response.POST.get("d"+str(membership.membership_id)) == "clicked":
-                    choosenMembership = Membership.objects.get(membership_id = membership.membership_id)
-                    
+                    choosenMembership = Membership.objects.get(
+                        membership_id=membership.membership_id)
+
             if choosenMembership != None:
                 for memberA in members:
                     if response.POST.get("c"+str(memberA.member_id)) == "clicked":
@@ -108,14 +113,13 @@ def receptionist(response, id):
                         st_date = datetime.date.today()
                         end_date = st_date + datetime.timedelta(days=+30)
                         newMembership = MemberMemberships.objects.create(
-                            member_memberships_id = newId,
-                            membership = choosenMembership,
-                            member = memberA,
-                            purchase_date = st_date,
-                            expiry_date = end_date
+                            member_memberships_id=newId,
+                            membership=choosenMembership,
+                            member=memberA,
+                            purchase_date=st_date,
+                            expiry_date=end_date
                         )
-    
-    
+
     my_dic = {
         "receptionist": receptionist,
         "active": active_memberships,
@@ -125,5 +129,5 @@ def receptionist(response, id):
         "members": members,
         "memberships": memberships
     }
-    
+
     return render(response, "myapp/receptionist.html", my_dic)

@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import cx_Oracle
+from .keys import *
 #! -----------------------------------------
 #! DODAJ TO BO INACZEJ MIGRATE NIE ZADZIALA
 #! -----------------------------------------
-cx_Oracle.init_oracle_client(lib_dir=r"D:\Oracle11g\instantclient_19_10")
+# import cx_Oracle
+# cx_Oracle.init_oracle_client(lib_dir=r"D:\Oracle11g\instantclient_19_10")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,12 +84,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'xe',
-        'USER': 'c##artur',
-        'PASSWORD': 'password2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gym-app',
+        'USER': 'postgres',
+        'PASSWORD': DB_PASS,
         'HOST': 'localhost',
-        'PORT': '1521',
+        'PORT': '5432',
     }
 }
 
