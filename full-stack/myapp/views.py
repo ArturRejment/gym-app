@@ -71,8 +71,17 @@ def client(response, id):
 def index(response):
     return render(response, "myapp/index.html", {})
 
-def loginPage(response):
-    return render(response, "myapp/login.html", {})
+def loginPage(request):
+
+    if request.method == "POST":
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+
+        print(username, ' ', password)
+
+    context = {}
+
+    return render(request, "myapp/login.html", context)
 
 def receptionist(response, id):
     receptionist = Receptionist.objects.get(receptionist_id=id)

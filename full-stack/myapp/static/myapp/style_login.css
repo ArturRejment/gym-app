@@ -45,7 +45,7 @@ body {
   outline: none;
 }
 
-section {
+form {
   position: relative;
   width: 50vw;
   height: 70vh;
@@ -64,12 +64,12 @@ section {
           justify-content: space-evenly;
 }
 
-section h1 {
+form h1 {
   font-size: 72px;
   font-weight: normal;
 }
 
-section input {
+form input {
   height: 80px;
   width: 375px;
   border-radius: 45px;
@@ -82,11 +82,11 @@ section input {
           filter: drop-shadow(2px 3px 2px gray);
 }
 
-section input:focus {
+form input:focus {
   outline: none;
 }
 
-section .login {
+form .login {
   height: 80px;
   width: 375px;
   border: none;
@@ -98,11 +98,11 @@ section .login {
           filter: drop-shadow(2px 3px 2px gray);
 }
 
-section .login:focus {
+form .login:focus {
   outline: none;
 }
 
-section .login:hover {
+form .login:hover {
   cursor: pointer;
 }
 /*# sourceMappingURL=style_login.css.map */

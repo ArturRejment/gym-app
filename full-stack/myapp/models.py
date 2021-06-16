@@ -9,6 +9,9 @@ class Address(models.Model):
     city = models.CharField(max_length=20)
     street = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.city + ' ' + self.street
+
     class Meta:
         managed = False
         db_table = 'address'
@@ -19,6 +22,9 @@ class GroupTraining(models.Model):
     group_training_name = models.CharField(max_length=30)
     trainer = models.ForeignKey('Trainer', models.DO_NOTHING)
     working = models.ForeignKey('WorkingHours', models.DO_NOTHING)
+
+    def __str__(self):
+        return self.group_training_name
 
     class Meta:
         managed = False
@@ -41,6 +47,9 @@ class GymMember(models.Model):
     sign_up_date = models.DateField()
     is_suspended = models.BooleanField(blank=True, null=True)
 
+    def __str__(self):
+        return f'Member {self.personal_data}'
+
     class Meta:
         managed = False
         db_table = 'gym_member'
@@ -53,6 +62,9 @@ class MemberMemberships(models.Model):
     purchase_date = models.DateField()
     expiry_date = models.DateField()
 
+    def __str__(self):
+        return f'{self.member} until {self.expiry_date}'
+
     class Meta:
         managed = False
         db_table = 'member_memberships'
@@ -63,6 +75,9 @@ class Membership(models.Model):
     membership_type = models.CharField(max_length=30)
     membership_price = models.DecimalField(
         max_digits=65535, decimal_places=65535)
+
+    def __str__(self):
+        return self.membership_type
 
     class Meta:
         managed = False
@@ -77,6 +92,9 @@ class PersonalData(models.Model):
     phone_number = models.CharField(max_length=9, blank=True, null=True)
     email = models.CharField(unique=True, max_length=50)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
     class Meta:
         managed = False
         db_table = 'personal_data'
@@ -87,6 +105,9 @@ class Products(models.Model):
     product_price = models.DecimalField(max_digits=65535, decimal_places=65535)
     product_name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.product_name
+
     class Meta:
         managed = False
         db_table = 'products'
@@ -96,6 +117,9 @@ class Receptionist(models.Model):
     receptionist_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     is_senior_receptionist = models.BooleanField(blank=True, null=True)
+
+    def __str__(self):
+        return f'Receptionist {self.personal_data}'
 
     class Meta:
         managed = False
@@ -108,6 +132,9 @@ class Shop(models.Model):
     address = models.ForeignKey(
         Address, models.DO_NOTHING, blank=True, null=True)
 
+    def __str__(self):
+        return  self.shop_name
+
     class Meta:
         managed = False
         db_table = 'shop'
@@ -119,6 +146,9 @@ class ShopProducts(models.Model):
     product = models.ForeignKey(Products, models.DO_NOTHING)
     product_amount = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.product} in {self.shop}'
+
     class Meta:
         managed = False
         db_table = 'shop_products'
@@ -128,6 +158,9 @@ class Trainer(models.Model):
     trainer_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     number_of_certifications = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f'Trainer {self.personal_data}'
 
     class Meta:
         managed = False
