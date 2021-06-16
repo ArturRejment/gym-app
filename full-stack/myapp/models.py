@@ -159,7 +159,7 @@ class Trainer(models.Model):
     trainer_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     number_of_certifications = models.IntegerField(blank=True, null=True)
-    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f'Trainer {self.personal_data}'
@@ -190,3 +190,6 @@ class WorkingHours(models.Model):
     class Meta:
         managed = False
         db_table = 'working_hours'
+
+class Hello(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
