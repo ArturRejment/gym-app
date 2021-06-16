@@ -16,7 +16,7 @@ body {
   background-image: url("images/hero.jpg");
   /* -o-object-fit: cover; */
   object-fit: cover;
-  background-position: center;
+  background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
