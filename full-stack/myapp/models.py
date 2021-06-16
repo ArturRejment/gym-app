@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -47,6 +48,7 @@ class GymMember(models.Model):
     sign_up_date = models.DateField()
     is_suspended = models.BooleanField(blank=True, null=True)
 
+
     def __str__(self):
         return f'Member {self.personal_data}'
 
@@ -76,13 +78,12 @@ class Membership(models.Model):
     membership_price = models.DecimalField(
         max_digits=65535, decimal_places=65535)
 
-    def __str__(self):
-        return self.membership_type
-
     class Meta:
         managed = False
         db_table = 'membership'
 
+    def __str__(self):
+        return self.membership_type
 
 class PersonalData(models.Model):
     personal_data_id = models.AutoField(primary_key=True)
@@ -158,6 +159,7 @@ class Trainer(models.Model):
     trainer_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     number_of_certifications = models.IntegerField(blank=True, null=True)
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Trainer {self.personal_data}'
