@@ -71,6 +71,8 @@ def client(response, id):
 def index(response):
     return render(response, "myapp/index.html", {})
 
+def loginPage(response):
+    return render(response, "myapp/login.html", {})
 
 def receptionist(response, id):
     receptionist = Receptionist.objects.get(receptionist_id=id)

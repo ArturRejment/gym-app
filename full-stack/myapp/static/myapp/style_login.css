@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Fira Code", sans-serif;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.image {
+  width: 50vw;
+  height: 100vh;
+}
+
+.image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.back {
+  text-decoration: none;
+  color: black;
+  background-color: transparent;
+  font-size: 18px;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  cursor: pointer;
+}
+
+.back:focus {
+  outline: none;
+}
+
+section {
+  position: relative;
+  width: 50vw;
+  height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+section h1 {
+  font-size: 72px;
+  font-weight: normal;
+}
+
+section input {
+  height: 80px;
+  width: 375px;
+  border-radius: 45px;
+  background-color: #c9c9c9;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  -webkit-filter: drop-shadow(2px 3px 2px gray);
+          filter: drop-shadow(2px 3px 2px gray);
+}
+
+section input:focus {
+  outline: none;
+}
+
+section .login {
+  height: 80px;
+  width: 375px;
+  border: none;
+  border-radius: 45px;
+  background-color: #4f9acf;
+  color: white;
+  font-size: 24px;
+  -webkit-filter: drop-shadow(2px 3px 2px gray);
+          filter: drop-shadow(2px 3px 2px gray);
+}
+
+section .login:focus {
+  outline: none;
+}
+
+section .login:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style_login.css.map */

@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css" />
+    <link rel="stylesheet" href="{% static 'myapp/style_login.css' %}" type="text/css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="{% url 'index' %}" class="back">< back</a>
+    <section>
+
+        <h1>Login</h1>
+        <input type="email" placeholder="username">
+        <input type="password" placeholder="password">
+        <button class="login">Login</button>
+
+    </section>
+
+    <div class="image">
+        <img src="{% static 'myapp/images/login_hero.jpg' %}">
+    </div>
+</body>
+
+</html>
