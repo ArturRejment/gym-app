@@ -18,8 +18,11 @@
     {% csrf_token %}
 
         <h1>Login</h1>
-        <input type="email" name="email" placeholder="Email...">
+        <input type="username" name="email" placeholder="Email...">
         <input type="password" name="password" placeholder="Password...">
+        {% for message in messages %}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
         <button type="submit" class="login">Login</button>
 
     </form>

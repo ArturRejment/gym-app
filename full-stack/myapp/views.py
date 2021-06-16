@@ -1,14 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import CreateNewTrainer, UpdateWorkingHours
-from rest_framework import generics
-from .serializers import *
+
 import datetime
+from .serializers import *
+from .models import *
+from .decorators import unauthenticated_user
 
-# Create your views here.
 
-
+#! Client Page
+@login_required(login_url = 'login')
 def trainer(response, id):
     trainerHours = TrainerHours.objects.all()
     trainer = Trainer.objects.get(trainer_id=id)
@@ -35,7 +39,8 @@ def trainer(response, id):
 
     return render(response, "myapp/trainer.html", {"trainerHours": trainerHours, "trainer": trainer, "trainerData": personalData, "member": member})
 
-
+#! Client Page
+@login_required(login_url = 'login')
 def client(response, id):
     trainerHours = TrainerHours.objects.all()
     trainers = Trainer.objects.all()
@@ -67,22 +72,39 @@ def client(response, id):
 
     return render(response, "myapp/client.html", my_dic)
 
-
+#! Index Page
 def index(response):
     return render(response, "myapp/index.html", {})
 
+#! Logout Page
+def logoutPage(request):
+
+    logout(request)
+
+    return redirect('index')
+
+#! Login Page
+@unauthenticated_user
 def loginPage(request):
 
     if request.method == "POST":
         username = request.POST.get('email')
         password = request.POST.get('password')
 
-        print(username, ' ', password)
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/client/1')
+        else:
+            messages.info(request, 'Username or password is incorrect!')
 
     context = {}
 
     return render(request, "myapp/login.html", context)
 
+#! Receptionist Page
+@login_required(login_url = 'login')
 def receptionist(response, id):
     receptionist = Receptionist.objects.get(receptionist_id=id)
 

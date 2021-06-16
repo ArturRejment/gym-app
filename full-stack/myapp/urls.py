@@ -6,5 +6,6 @@ urlpatterns = [
     path("trainer/<int:id>", views.trainer, name="trainer"),
     path("receptionist/<int:id>", views.receptionist, name="receptionist"),
     path("", views.index, name="index"),
-    path("login/", views.loginPage, name="login")
+    path("login/", views.loginPage, name="login"),
+    path("logout/", views.logoutPage, name="logout"),
 ]
