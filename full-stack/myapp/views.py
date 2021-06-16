@@ -8,7 +8,7 @@ from .forms import CreateNewTrainer, UpdateWorkingHours
 import datetime
 from .serializers import *
 from .models import *
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user, allowed_users
 
 
 #! Client Page
@@ -95,7 +95,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/client/1')
+            return redirect('trainerPage')
         else:
             messages.info(request, 'Username or password is incorrect!')
 
@@ -164,3 +164,17 @@ def receptionist(response, id):
     }
 
     return render(response, "myapp/receptionist.html", my_dic)
+
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles=['trainer'])
+def trainerPage(request):
+
+    trainerHours = request.user.trainer.trainerhours_set.all()
+    print(trainerHours)
+
+    trainer = request.user.trainer
+
+    context = {
+        "trainerHours": trainerHours,
+    }
+    return render(request, "myapp/trainer.html", context)
