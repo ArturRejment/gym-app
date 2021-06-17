@@ -20,9 +20,11 @@
     <div class="container">
       <h1>Hello, {{request.user.trainer.personal_data.first_name}}</h1>
 
+      <a href="{% url 'logout' %}" class="logout">Logout</a>
+
       <div class="schedule">
         <h2>Here is your shedule for tomorrow</h2>
-        <form method="post">
+        <form action="{% url 'trainerUpdate' %}" method="POST">
           {% csrf_token %} {% for hour in trainerHours %}
           <div class="schedule__list">
             {% comment %} {% if trainer.trainer_id == hour.trainer_id%} {% endcomment %}

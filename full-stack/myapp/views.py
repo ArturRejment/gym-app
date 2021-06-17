@@ -13,35 +13,32 @@ from .decorators import unauthenticated_user, allowed_users
 
 #! Client Page
 @login_required(login_url = 'login')
-def trainer(response, id):
-    trainerHours = TrainerHours.objects.all()
-    trainer = Trainer.objects.get(trainer_id=id)
-    personalData = PersonalData.objects.get(
-        personal_data_id=trainer.personal_data_id)
-    member = GymMember.objects.all()
+@allowed_users(allowed_roles=['trainer'])
+def trainerUpdate(request):
+    trainerHours = request.user.trainer.trainerhours_set.all()
 
-    if response.method == "POST":
-        if response.POST.get("availability"):
+    if request.method == "POST":
+        if request.POST.get("availability"):
             for hour in trainerHours:
-                if response.POST.get("c"+str(hour.shift_id)) == "clicked":
+                if request.POST.get("c"+str(hour.shift_id)) == "clicked":
                     if hour.is_active == 1:
                         hour.is_active = 0
                     else:
                         hour.is_active = 1
                     hour.save()
 
-        if response.POST.get("taken"):
+        if request.POST.get("taken"):
             for hour in trainerHours:
-                if response.POST.get("c"+str(hour.shift_id)) == "clicked":
+                if request.POST.get("c"+str(hour.shift_id)) == "clicked":
                     if hour.member != None:
                         hour.member = None
                     hour.save()
 
-    return render(response, "myapp/trainer.html", {"trainerHours": trainerHours, "trainer": trainer, "trainerData": personalData, "member": member})
+    return render(request, "myapp/trainer.html", {"trainerHours": trainerHours})
 
 #! Client Page
 @login_required(login_url = 'login')
-def client(response, id):
+def client(response):
     trainerHours = TrainerHours.objects.all()
     trainers = Trainer.objects.all()
     client = GymMember.objects.get(member_id=id)
