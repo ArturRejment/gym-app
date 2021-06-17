@@ -116,8 +116,9 @@ def loginPage(request):
 
 #! Receptionist Page
 @login_required(login_url = 'login')
-def receptionist(response, id):
-    receptionist = Receptionist.objects.get(receptionist_id=id)
+@allowed_users(allowed_roles=['receptionist'])
+def receptionist(request):
+    receptionist = request.user.receptionist
 
     # Active memberships
     # Active membersips are not woring properly
@@ -130,29 +131,29 @@ def receptionist(response, id):
     shop = Shop.objects.get(shop_id=1)
     products = Products.objects.all()
 
-    if response.method == "POST":
-        if response.POST.get("delProd"):
+    if request.method == "POST":
+        if request.POST.get("delProd"):
             # shopItemsForDeletion = ShopProducts.objects.all()
             for product in shopItems:
-                if response.POST.get("c"+str(product.listing_id)) == "clicked":
+                if request.POST.get("c"+str(product.listing_id)) == "clicked":
                     product.delete()
 
-        elif response.POST.get("addProd"):
+        elif request.POST.get("addProd"):
             for productA in products:
-                if response.POST.get("c"+str(productA.product_id)) == "clicked":
+                if request.POST.get("c"+str(productA.product_id)) == "clicked":
                     newId = ShopProducts.objects.last().listing_id+1
                     prod = ShopProducts.objects.create(
                         listing_id=newId, shop=shop, product=productA, product_amount=15)
 
-        elif response.POST.get("renew"):
+        elif request.POST.get("renew"):
             for membership in memberships:
-                if response.POST.get("d"+str(membership.membership_id)) == "clicked":
+                if request.POST.get("d"+str(membership.membership_id)) == "clicked":
                     choosenMembership = Membership.objects.get(
                         membership_id=membership.membership_id)
 
             if choosenMembership != None:
                 for memberA in members:
-                    if response.POST.get("c"+str(memberA.member_id)) == "clicked":
+                    if request.POST.get("c"+str(memberA.member_id)) == "clicked":
                         newId = MemberMemberships.objects.last().member_memberships_id + 1
                         st_date = datetime.date.today()
                         end_date = st_date + datetime.timedelta(days=+30)
@@ -174,7 +175,7 @@ def receptionist(response, id):
         "memberships": memberships
     }
 
-    return render(response, "myapp/receptionist.html", my_dic)
+    return render(request, "myapp/receptionist.html", my_dic)
 
 @login_required(login_url = 'login')
 @allowed_users(allowed_roles=['trainer'])
