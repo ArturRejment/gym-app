@@ -19,58 +19,60 @@
 <body>
     <h1 class="greeting"> Hello, {{client.personal_data.first_name}}!</h1>
 
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
+
     <article class="artic">
         <div class="shop">
                 <img src="{% static 'myapp/images/pic1.jpg' %}" />
 
             <div class="shop__section">
-                <h1> Wanna buy some drugs?</h1>    
+                <h1> Wanna buy some drugs?</h1>
                 {% for shopItem in shopItems %}
-                
-                    
+
+
                         <div class="shop__product">
                             <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div> {{shopItem.product_amount}} <div>Buy</div> <br>
                         </div>
-                    
+
                 {% endfor %}
             </div>
         </div>
-        
+
     </article>
 
     <div class="sizedBox"></div>
-    
+
     <article class="art">
     <div class="trainers">
         <h3>Available trainers</h3>
-        
+
         <div class="trainers__name">
-        {% for trainer in trainers %} 
+        {% for trainer in trainers %}
            <p> {{trainer.personal_data.first_name}} {{trainer.personal_data.last_name}} </p>
         </div>
-        
+
         <div class="trainers__form">
             <form method="post">
             {% csrf_token %}
-            
+
             <ul>
             {% for hour in trainerHours %}
                 {% if trainer.trainer_id == hour.trainer.trainer_id %}
                     {% if hour.is_active == 1 %}
                         {% if hour.member_id == None %}
-                            <li> 
+                            <li>
                                 <input type="checkbox", class="check", value="clicked" name="c{{hour.shift_id}}">
-                                {{hour.working.start_time}} - {{hour.working.finish_time}} 
+                                {{hour.working.start_time}} - {{hour.working.finish_time}}
                             </li>
                         {% endif %}
                     {% endif %}
-                    
+
                 {% endif %}
-            
+
             {% endfor %}
             </ul>
             {% endfor %}
-            
+
                     <button type="submit", name="save", value="save"> Confirm </button>
             </form>
         </div>
@@ -79,12 +81,12 @@
 
     <div class="group_train">
         <h3>Group trainings</h3>
-        
+
         <form method="post">
         {% csrf_token %}
             {% for groupTraining in groupTrainings %}
                 <div class="section">
-                    <h2>{{groupTraining.group_training_name}}</h2> 
+                    <h2>{{groupTraining.group_training_name}}</h2>
                     <p>
                     <input type="checkbox", class="check", value="clicked", name="c{{groupTraining.group_training_id}}">
                     {{groupTraining.working.start_time}} - {{groupTraining.working.finish_time}} </p>

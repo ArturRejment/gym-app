@@ -47,6 +47,7 @@ class GymMember(models.Model):
     personal_data = models.ForeignKey('PersonalData', models.DO_NOTHING)
     sign_up_date = models.DateField()
     is_suspended = models.BooleanField(blank=True, null=True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.DO_NOTHING)
 
 
     def __str__(self):
@@ -118,6 +119,7 @@ class Receptionist(models.Model):
     receptionist_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey(PersonalData, models.DO_NOTHING)
     is_senior_receptionist = models.BooleanField(blank=True, null=True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f'Receptionist {self.personal_data}'

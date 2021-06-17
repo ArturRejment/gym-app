@@ -6,6 +6,25 @@
   font-family: "Fira Code", sans-serif;
 }
 
+.logout {
+        position: absolute;
+        text-align: center;
+        padding-top: 10px;
+        top: 10px;
+        right: 100px;
+        text-decoration: none;
+        margin: 50px 50px;
+        width: 200px;
+        height: 50px;
+        border-radius: 45px;
+        border: none;
+        background-color: #4F9ACF;
+        color: white;
+        font-size: 20px;
+        font-weight: normal;
+        filter: drop-shadow(2px 3px 2px gray);
+        cursor: pointer;
+}
 
 .greeting {
     margin-left: 100px;
@@ -80,7 +99,7 @@
 
 
 .trainers {
-    
+
 
     h3 {
         font-size: 36px;

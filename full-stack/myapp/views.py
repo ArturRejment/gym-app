@@ -38,24 +38,25 @@ def trainerUpdate(request):
 
 #! Client Page
 @login_required(login_url = 'login')
-def client(response):
+@allowed_users(allowed_roles=['member'])
+def client(request):
     trainerHours = TrainerHours.objects.all()
     trainers = Trainer.objects.all()
-    client = GymMember.objects.get(member_id=id)
+    client = request.user.gymmember
     groupTrainingSchedule = GroupTrainingSchedule.objects.all()
     groupTrainings = GroupTraining.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
 
-    if response.method == "POST":
-        if response.POST.get("save"):
+    if request.method == "POST":
+        if request.POST.get("save"):
             for hour in trainerHours:
-                if response.POST.get("c"+str(hour.shift_id)) == "clicked":
+                if request.POST.get("c"+str(hour.shift_id)) == "clicked":
                     hour.member = client
                 hour.save()
 
-        elif response.POST.get("saveGroup"):
+        elif request.POST.get("saveGroup"):
             for training in groupTrainings:
-                if response.POST.get("c"+str(training.group_training_id)) == "clicked":
+                if request.POST.get("c"+str(training.group_training_id)) == "clicked":
                     last = GroupTrainingSchedule.objects.last().group_training_schedule_id+1
                     train = GroupTrainingSchedule.objects.create(
                         group_training_schedule_id=last, group_training=training, member=client)
@@ -67,7 +68,7 @@ def client(response):
               "groupTrainingSchedule": groupTrainingSchedule,
               "shopItems": shopItems}
 
-    return render(response, "myapp/client.html", my_dic)
+    return render(request, "myapp/client.html", my_dic)
 
 #! Index Page
 def index(response):
@@ -90,9 +91,22 @@ def loginPage(request):
 
         user = authenticate(request, username=username, password=password)
 
+        group = None
+
         if user is not None:
             login(request, user)
-            return redirect('trainerPage')
+            if request.user.groups.exists():
+                group = request.user.groups.all()[0].name
+
+            if group == 'trainer':
+                return redirect('trainerPage')
+            elif group == 'member':
+                return redirect('client')
+            elif group == 'receptionist':
+                return redirect('receptionist')
+
+            if group == None:
+                return HttpResponse("Your account do not have valid pemissions! Please, contact with receptionist")
         else:
             messages.info(request, 'Username or password is incorrect!')
 
