@@ -84,6 +84,11 @@
   color: black;
 }
 
+.artic .shop .shop__product a {
+  text-decoration: none;
+  color: #4F9ACF;
+}
+
 .artic .shop .shop__product .buyBttn {
   background-color: none;
   width: -webkit-fit-content;

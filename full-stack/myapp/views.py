@@ -46,7 +46,7 @@ def client(request):
     client = request.user.gymmember
     groupTrainingSchedule = GroupTrainingSchedule.objects.all()
     groupTrainings = GroupTraining.objects.all()
-    shopItems = ShopProducts.objects.filter(shop_id=1)
+    shopItems = ShopProducts.objects.filter(shop_id=1).order_by('product__product_name')
 
 
     myFilter = TrainerFilter(request.GET, queryset = trainers)
@@ -197,3 +197,14 @@ def trainerPage(request):
         "trainerHours": trainerHours,
     }
     return render(request, "myapp/trainer.html", context)
+
+
+def buyProduct(request, **kwargs):
+
+    product = ShopProducts.objects.get(listing_id = kwargs['id'])
+    print(product)
+
+    product.product_amount -= 1
+    product.save()
+
+    return redirect('client')

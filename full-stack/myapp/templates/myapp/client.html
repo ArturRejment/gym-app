@@ -31,7 +31,7 @@
 
 
                         <div class="shop__product">
-                            <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div> {{shopItem.product_amount}} <div>Buy</div> <br>
+                            <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div> {{shopItem.product_amount}} <div><a href="{% url 'buyProduct' shopItem.listing_id %}"> Buy </a></div> <br>
                         </div>
 
                 {% endfor %}
@@ -52,7 +52,7 @@
                     <form method="get">
                     {{trainerFilter.form}}
 
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button style="margin-top: 30px; margin-bottom: 50px" type="submit">Search</button>
                 </form>
                 </div>
             </div>
