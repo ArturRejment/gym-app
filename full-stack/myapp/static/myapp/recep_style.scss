@@ -21,6 +21,26 @@
     }
 }
 
+.logout {
+        position: absolute;
+        text-align: center;
+        padding-top: 10px;
+        top: 10px;
+        right: 100px;
+        text-decoration: none;
+        margin: 50px 50px;
+        width: 200px;
+        height: 50px;
+        border-radius: 45px;
+        border: none;
+        background-color: #4F9ACF;
+        color: white;
+        font-size: 20px;
+        font-weight: normal;
+        filter: drop-shadow(2px 3px 2px gray);
+        cursor: pointer;
+}
+
 .container2 {
     font-family: "Fira Code", sans-serif;
     display: flex;
@@ -42,7 +62,7 @@
         margin-bottom: 30px;
         margin-left: 20px;
         width: 45vw;
-        
+
 
         .data {
             width: 15vw;
@@ -66,7 +86,7 @@
             }
 
             .members {
-                
+
                 div {
                     margin-bottom: 15px;
                     display: flex;
@@ -103,10 +123,10 @@ h1 {
 .productsList {
     width: 50vw;
     text-align: center;
-    
+
 
     h2 {
-       
+
         font-size: 36px;
         font-weight: normal;
         margin-bottom: 70px;

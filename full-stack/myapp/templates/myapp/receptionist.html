@@ -21,16 +21,8 @@
 
     <h1 class="greeting"> Hello{% if receptionist.is_senior_receptionist == True%} Senior Receptionist{%else%} Junior Receptionist{% endif %}, {{receptionist.personal_data.first_name}}!</h1>
 
-    {% comment %} <article class="active_memberships">
-    <h1> Active memberships </h1>
-        {% for act_member in active%}
-      
-        <div class="active_member">
-            {{act_member.first_name}}  {{act_member.expiry_date}}
-        </div>
-   
-        {% endfor %}
-    </article> {% endcomment %}
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
+
     <div class="container">
 
         <article class="shopMenagement">
@@ -38,12 +30,12 @@
             <form method="post">
             {% csrf_token %}
             {% for shopItem in shopItems %}
-                    
-                        
+
+
                 <div class="shop__product">
                     <div style="width: 13vw">{{shopItem.product.product_name}}</div> <div style="width: 13vw">{{shopItem.product.product_price}}zł</div>  <input type="checkbox", class = "check", value="clicked" name="c{{shopItem.listing_id}}"/>
                 </div>
-                        
+
             {% endfor %}
             <button type="submit", value="delProd", name="delProd"> Delete Products </button>
             </form>
@@ -64,11 +56,11 @@
             </form>
         </article>
 
-        
+
     </div>
 
     <div class="container2">
-        
+
         <article class="active">
         <h2> Active memberships </h2>
             {% for act in active %}
@@ -76,7 +68,7 @@
             {% endfor %}
         </article>
 
-        
+
         <article class="addMembership">
             <h2>Renew membership </h2>
             <form method="post">
@@ -85,8 +77,8 @@
                     <div class="members">
                         <h3>Members</h3>
                         {% for member in members %}
-                            <div> 
-                                {{member.personal_data.first_name}} {{member.personal_data.last_name}} 
+                            <div>
+                                {{member.personal_data.first_name}} {{member.personal_data.last_name}}
                                 <input type="checkbox", class = "check", value="clicked" name="c{{member.member_id}}"/>
                             </div>
                         {% endfor %}
@@ -95,7 +87,7 @@
                     <div class="memberships">
                         <h3>Memberships</h3>
                         {% for membership in memberships %}
-                            <div> 
+                            <div>
                                 {{membership.membership_type}} {{membership.membership_price}} zł
                                 <input type="checkbox", class = "check", value="clicked" name="d{{membership.membership_id}}"/>
                             </div>
