@@ -189,6 +189,9 @@ class WorkingHours(models.Model):
     start_time = models.CharField(max_length=5)
     finish_time = models.CharField(max_length=5)
 
+    def __str__(self):
+        return self.start_time + ' - ' + self.finish_time
+
     class Meta:
         managed = False
         db_table = 'working_hours'

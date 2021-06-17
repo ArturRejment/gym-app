@@ -9,6 +9,7 @@ import datetime
 from .serializers import *
 from .models import *
 from .decorators import unauthenticated_user, allowed_users
+from .filters import TrainerFilter
 
 
 #! Client Page
@@ -47,6 +48,10 @@ def client(request):
     groupTrainings = GroupTraining.objects.all()
     shopItems = ShopProducts.objects.filter(shop_id=1)
 
+
+    myFilter = TrainerFilter(request.GET, queryset = trainers)
+    trainers = myFilter.qs
+
     if request.method == "POST":
         if request.POST.get("save"):
             for hour in trainerHours:
@@ -66,7 +71,9 @@ def client(request):
               "trainers": trainers,
               "groupTrainings": groupTrainings,
               "groupTrainingSchedule": groupTrainingSchedule,
-              "shopItems": shopItems}
+              "shopItems": shopItems,
+              "trainerFilter": myFilter
+              }
 
     return render(request, "myapp/client.html", my_dic)
 
