@@ -121,6 +121,12 @@ def loginPage(request):
 
     return render(request, "myapp/login.html", context)
 
+@unauthenticated_user
+def registerPage(request):
+    context = {}
+
+    return render(request, 'myapp/register.html', context)
+
 #! Receptionist Page
 @login_required(login_url = 'login')
 @allowed_users(allowed_roles=['receptionist'])
