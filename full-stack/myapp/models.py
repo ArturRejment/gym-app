@@ -45,8 +45,8 @@ class GroupTrainingSchedule(models.Model):
 class GymMember(models.Model):
     member_id = models.AutoField(primary_key=True)
     personal_data = models.ForeignKey('PersonalData', models.DO_NOTHING)
-    sign_up_date = models.DateField()
-    is_suspended = models.BooleanField(blank=True, null=True)
+    sign_up_date = models.DateField(auto_now_add=True)
+    is_suspended = models.BooleanField(blank=True, default=False)
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.DO_NOTHING)
 
 

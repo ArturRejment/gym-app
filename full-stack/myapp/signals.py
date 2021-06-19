@@ -8,14 +8,16 @@ def member_profile(sender, instance, created, **kwargs):
         instance.groups.add(group)
 
         data = PersonalData.objects.create(
+			personal_data_id = PersonalData.objects.last().personal_data_id + 1,
 			first_name=instance.first_name,
 			last_name=instance.last_name,
 			email = instance.email
 		)
 
         GymMember.objects.create(
+			member_id = GymMember.objects.last().member_id + 1,
 			user=instance,
-            personal_data = data
+            personal_data=data
 		)
 
         print('Profile created!!!')
