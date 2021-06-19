@@ -90,7 +90,7 @@ class PersonalData(models.Model):
     personal_data_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    address = models.ForeignKey(Address, models.DO_NOTHING)
+    address = models.ForeignKey(Address, models.DO_NOTHING, null=True)
     phone_number = models.CharField(max_length=9, blank=True, null=True)
     email = models.CharField(unique=True, max_length=50)
 

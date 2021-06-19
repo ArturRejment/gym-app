@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CreateNewTrainer, UpdateWorkingHours
+from .forms import CreateUserForm, UpdateWorkingHours
 
 import datetime
 from .serializers import *
@@ -123,7 +123,19 @@ def loginPage(request):
 
 @unauthenticated_user
 def registerPage(request):
-    context = {}
+
+    form = CreateUserForm()
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            messages.success(request, 'User ' + username + ' created!')
+            return redirect('login')
+
+    context = {'form': form}
 
     return render(request, 'myapp/register.html', context)
 
