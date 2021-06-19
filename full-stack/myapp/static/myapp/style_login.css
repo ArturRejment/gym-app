@@ -46,6 +46,20 @@ body {
   color: #4f9acf;
 }
 
+.block {
+  width: 25vw;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.block input {
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
+}
+
 .back:focus {
   outline: none;
 }

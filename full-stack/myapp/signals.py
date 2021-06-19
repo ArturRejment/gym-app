@@ -1,11 +1,13 @@
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User, Group
-from .models import GymMember, PersonalData
+from .models import GymMember, PersonalData, Address
 
 def member_profile(sender, instance, created, **kwargs):
     if created:
         group = Group.objects.get(name='member')
         instance.groups.add(group)
+
+
 
         data = PersonalData.objects.create(
 			personal_data_id = PersonalData.objects.last().personal_data_id + 1,
