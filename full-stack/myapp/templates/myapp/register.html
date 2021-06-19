@@ -27,11 +27,13 @@
         </div>
 
         <div class="block">
-                {{form.city}}
+                {{form.phone}}
 
-                {{form.street}}
+                {{form.city}}
         </div>
         <div class="block">
+                {{form.street}}
+
                 {{form.postcode}}
         </div>
 
@@ -61,9 +63,10 @@
 		form_fields[4].placeholder='Re-enter Password...';
 		form_fields[5].placeholder='First name...';
 		form_fields[6].placeholder='Last name...';
-		form_fields[7].placeholder='City...';
-		form_fields[8].placeholder='Street...';
-		form_fields[9].placeholder='Postcode';
+		form_fields[7].placeholder='Phone...';
+		form_fields[8].placeholder='City...';
+		form_fields[9].placeholder='Street...';
+		form_fields[10].placeholder='Postcode';
 
 
 		for (var field in form_fields){
