@@ -15,10 +15,10 @@ class CreateUserForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super(CreateUserForm, self).save(commit=False)
-        user._street = 'hello'
-        user._city = 'city'
-        user._phone = 'phone'
-        user._postcode = 'post'
+        user._street = self.cleaned_data['street']
+        user._city = self.cleaned_data['city']
+        user._phone = self.cleaned_data['phone']
+        user._postcode = self.cleaned_data['postcode']
 
         if commit:
             user.save()
