@@ -6,7 +6,7 @@ signing for personal and group trainings, browsing and buying products as gym me
 ## Database
 Database for the application was created and implemented with PostreSQL.
 Entity Relationship Diagram for the database:
-![Database ER diagram (crow's foot).png](https://github.com/ArturRejment/gym-app/blob/main/Database/Database%20ER%20diagram%20(crow's%20foot).png?raw=true)
+![Database ER diagram (crow's foot).png](https://github.com/ArturRejment/gym-app/blob/main/SQL%20Scripts/Database%20ER%20diagram%20(crow's%20foot).png)
 
 ---
 ## Frontend
